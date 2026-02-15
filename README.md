@@ -25,10 +25,13 @@
 ### Some of these will be false positives. The point is to feed the findings .json back into your prefered AI model and have it check all of these to see what findings are genuine and fix them
 
 
-| Total Findings | Critical | High | Medium | Low |
+| Total Initial Findings | Critical | High | Medium | Low |
 | ---: | ---: | ---: | ---: | ---: |
 | **765** | **110** | **294** | **361** | **0** |
 
+| Total Validated Findings | Critical | High | Medium | Low |
+| ---: | ---: | ---: | ---: | ---: |
+| **5** | **5** | **0** | **0** | **0** |
 ### Stage Breakdown
 
 | Stage | Status | Result |
