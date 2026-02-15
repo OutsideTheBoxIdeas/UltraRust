@@ -9,7 +9,7 @@ use crate::types::{
     CompileLintResult, PipelineReport, RunOptions, SecurityResult, StageFilter, SupplyChainResult,
 };
 
-/// Run the full UltraRusty pipeline according to the given options.
+/// Run the full UltraRust pipeline according to the given options.
 /// Returns the aggregated pipeline report.
 pub fn run(options: &RunOptions) -> Result<PipelineReport> {
     let config = config::load_config(

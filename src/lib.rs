@@ -1,4 +1,4 @@
-// Library crate for UltraRusty - exposes the analysis driver for integration tests and external use.
+// Library crate for UltraRust - exposes the analysis driver for integration tests and external use.
 
 mod lints;
 mod security;

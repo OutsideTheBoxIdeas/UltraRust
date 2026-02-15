@@ -3,10 +3,10 @@ use std::path::{Path, PathBuf};
 use std::process::Command;
 
 use crate::config;
-use crate::types::{Finding, Severity, SupplyChainResult, UltraRustyConfig};
+use crate::types::{Finding, Severity, SupplyChainResult, UltraRustConfig};
 
 /// Run all supply chain checks on the target project
-pub fn run(project_path: &Path, config: &UltraRustyConfig, verbose: bool) -> Result<SupplyChainResult> {
+pub fn run(project_path: &Path, config: &UltraRustConfig, verbose: bool) -> Result<SupplyChainResult> {
     let mut result = SupplyChainResult::default();
 
     if verbose {
@@ -241,7 +241,7 @@ fn parse_deny_output(output: &str) -> Result<Vec<Finding>> {
 /// Run cargo-geiger and parse output
 fn run_cargo_geiger(
     project_path: &Path,
-    _config: &UltraRustyConfig,
+    _config: &UltraRustConfig,
     verbose: bool,
 ) -> Result<Vec<Finding>> {
     if which::which("cargo-geiger").is_err() {
@@ -267,7 +267,7 @@ fn run_cargo_geiger(
 }
 
 /// Parse cargo-geiger JSON output into findings
-fn parse_geiger_json(json_str: &str, config: &UltraRustyConfig) -> Result<Vec<Finding>> {
+fn parse_geiger_json(json_str: &str, config: &UltraRustConfig) -> Result<Vec<Finding>> {
     let mut findings = Vec::new();
 
     if json_str.trim().is_empty() {

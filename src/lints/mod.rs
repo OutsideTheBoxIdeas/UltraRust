@@ -1,4 +1,4 @@
-// Custom UltraRusty lints (5 gap-fillers Clippy doesn't cover)
+// Custom UltraRust lints (5 gap-fillers Clippy doesn't cover)
 
 pub mod bounded_generics;
 pub mod no_infinite_loops;

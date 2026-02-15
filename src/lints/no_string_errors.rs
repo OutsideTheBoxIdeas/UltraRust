@@ -71,7 +71,7 @@ impl StringErrorVisitor {
                 "&str"
             };
             self.findings.push(Finding {
-                source: "ultrarusty".into(),
+                source: "ultrarust".into(),
                 check_name: "no_string_errors".into(),
                 severity: Severity::Medium,
                 file: self.path.clone(),

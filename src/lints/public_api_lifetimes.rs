@@ -61,7 +61,7 @@ impl LifetimeVisitor {
             if !has_lifetime_params {
                 let span = sig.ident.span();
                 self.findings.push(Finding {
-                    source: "ultrarusty".into(),
+                    source: "ultrarust".into(),
                     check_name: "public_api_lifetimes".into(),
                     severity: Severity::Medium,
                     file: self.path.clone(),

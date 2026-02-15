@@ -23,7 +23,7 @@ pub fn build_report(
     let summary = build_summary(&all_findings);
 
     PipelineReport {
-        ultrarusty_version: VERSION.to_owned(),
+        ultrarust_version: VERSION.to_owned(),
         pass,
         stages: StageResults {
             supply_chain,
@@ -76,7 +76,7 @@ pub fn to_json(report: &PipelineReport) -> Result<String> {
 pub fn print_summary(report: &PipelineReport, verbose: bool) {
     let status = if report.pass { "PASS" } else { "FAIL" };
     eprintln!();
-    eprintln!("=== UltraRusty v{} - {} ===", report.ultrarusty_version, status);
+    eprintln!("=== UltraRust v{} - {} ===", report.ultrarust_version, status);
     eprintln!();
 
     // Supply chain

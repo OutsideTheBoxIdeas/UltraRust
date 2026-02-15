@@ -35,7 +35,7 @@ impl<'ast> Visit<'ast> for InfiniteLoopVisitor {
         if !loop_body_has_exit(&node.body) {
             let span = node.loop_token.span;
             self.findings.push(Finding {
-                source: "ultrarusty".into(),
+                source: "ultrarust".into(),
                 check_name: "no_infinite_loops".into(),
                 severity: Severity::High,
                 file: self.path.clone(),

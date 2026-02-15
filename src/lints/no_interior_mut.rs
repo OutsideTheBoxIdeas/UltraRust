@@ -40,7 +40,7 @@ impl InteriorMutVisitor {
             if BANNED_TYPES.contains(&ident.as_str()) {
                 let span = segment.ident.span();
                 self.findings.push(Finding {
-                    source: "ultrarusty".into(),
+                    source: "ultrarust".into(),
                     check_name: "no_interior_mutability".into(),
                     severity: Severity::High,
                     file: self.path.clone(),

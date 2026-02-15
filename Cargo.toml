@@ -1,5 +1,5 @@
 [package]
-name = "ultrarusty"
+name = "ultrarust"
 version = "1.0.0"
 edition = "2021"
 description = "A hardened Rust pipeline for AI-generated code"
@@ -9,7 +9,7 @@ keywords = ["lint", "security", "clippy", "audit", "pipeline"]
 categories = ["development-tools", "command-line-utilities"]
 
 [[bin]]
-name = "ultrarusty"
+name = "ultrarust"
 path = "src/main.rs"
 
 [dependencies]

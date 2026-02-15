@@ -1,4 +1,4 @@
-// UltraRusty: A hardened Rust pipeline for AI-generated code
+// UltraRust: A hardened Rust pipeline for AI-generated code
 // Entry point - cargo subcommand wrapper
 
 mod config;
@@ -18,17 +18,17 @@ use std::process;
 
 use types::{RunOptions, StageFilter};
 
-/// UltraRusty - A hardened Rust pipeline for AI-generated code.
+/// UltraRust - A hardened Rust pipeline for AI-generated code.
 ///
 /// Runs 3 stages: supply chain checks, compile+lint, and security analysis.
 /// Outputs a pass/fail verdict with structured JSON reports.
 #[derive(Parser, Debug)]
 #[command(
-    name = "ultrarusty",
+    name = "ultrarust",
     version,
     about = "A hardened Rust pipeline for AI-generated code"
 )]
-struct UltrarustyArgs {
+struct UltraRustArgs {
     /// Path to the project to analyze (defaults to current directory)
     #[arg(default_value = ".")]
     path: PathBuf,
@@ -64,7 +64,7 @@ fn parse_stage_filter(s: &str) -> Result<StageFilter, String> {
 }
 
 fn main() {
-    let args = UltrarustyArgs::parse();
+    let args = UltraRustArgs::parse();
 
     let project_path = if args.path.is_absolute() {
         args.path.clone()

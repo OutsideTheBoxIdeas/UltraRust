@@ -95,15 +95,15 @@ fn is_zero(val: &usize) -> bool {
 /// The full pipeline report
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct PipelineReport {
-    pub ultrarusty_version: String,
+    pub ultrarust_version: String,
     pub pass: bool,
     pub stages: StageResults,
     pub summary: Summary,
 }
 
-/// Configuration for UltraRusty
+/// Configuration for UltraRust
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct UltraRustyConfig {
+pub struct UltraRustConfig {
     /// Maximum cognitive complexity per function
     pub max_complexity: usize,
     /// Maximum lines per function
@@ -124,7 +124,7 @@ pub struct UltraRustyConfig {
     pub supply_chain_checks: bool,
 }
 
-impl Default for UltraRustyConfig {
+impl Default for UltraRustConfig {
     fn default() -> Self {
         Self {
             max_complexity: 12,

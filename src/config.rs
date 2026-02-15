@@ -2,7 +2,7 @@ use anyhow::{Context, Result};
 use std::fs;
 use std::path::{Path, PathBuf};
 
-use crate::types::UltraRustyConfig;
+use crate::types::UltraRustConfig;
 
 /// Embedded default clippy configuration
 pub const DEFAULT_CLIPPY_CONFIG: &str = include_str!("config/clippy_config.toml");
@@ -10,9 +10,9 @@ pub const DEFAULT_CLIPPY_CONFIG: &str = include_str!("config/clippy_config.toml"
 /// Embedded default deny configuration
 pub const DEFAULT_DENY_CONFIG: &str = include_str!("config/deny_config.toml");
 
-/// Load UltraRusty configuration from the target project's Cargo.toml
+/// Load UltraRust configuration from the target project's Cargo.toml
 /// Falls back to defaults if the section is missing.
-pub fn load_config(project_path: &Path, config_override: Option<&Path>) -> Result<UltraRustyConfig> {
+pub fn load_config(project_path: &Path, config_override: Option<&Path>) -> Result<UltraRustConfig> {
     // If a config override is specified, try to load from that file
     if let Some(config_path) = config_override {
         let content = fs::read_to_string(config_path)
@@ -23,7 +23,7 @@ pub fn load_config(project_path: &Path, config_override: Option<&Path>) -> Resul
         return config_from_toml_value(&parsed);
     }
 
-    // Otherwise, look in the project's Cargo.toml under [package.metadata.ultrarusty]
+    // Otherwise, look in the project's Cargo.toml under [package.metadata.ultrarust]
     let cargo_toml_path = project_path.join("Cargo.toml");
     if cargo_toml_path.exists() {
         let content = fs::read_to_string(&cargo_toml_path)
@@ -35,19 +35,19 @@ pub fn load_config(project_path: &Path, config_override: Option<&Path>) -> Resul
         if let Some(metadata) = parsed
             .get("package")
             .and_then(|p| p.get("metadata"))
-            .and_then(|m| m.get("ultrarusty"))
+            .and_then(|m| m.get("ultrarust"))
         {
             return config_from_toml_value(metadata);
         }
     }
 
     // Fall back to defaults
-    Ok(UltraRustyConfig::default())
+    Ok(UltraRustConfig::default())
 }
 
-/// Parse an UltraRustyConfig from a TOML value
-fn config_from_toml_value(value: &toml::Value) -> Result<UltraRustyConfig> {
-    let mut config = UltraRustyConfig::default();
+/// Parse an UltraRustConfig from a TOML value
+fn config_from_toml_value(value: &toml::Value) -> Result<UltraRustConfig> {
+    let mut config = UltraRustConfig::default();
 
     if let Some(v) = value.get("max-complexity").and_then(|v| v.as_integer()) {
         config.max_complexity = v as usize;
@@ -88,7 +88,7 @@ fn config_from_toml_value(value: &toml::Value) -> Result<UltraRustyConfig> {
 
 /// Write the embedded clippy config to a temporary location in the project
 pub fn write_clippy_config(project_path: &Path) -> Result<PathBuf> {
-    let config_path = project_path.join(".ultrarusty-clippy.toml");
+    let config_path = project_path.join(".ultrarust-clippy.toml");
     fs::write(&config_path, DEFAULT_CLIPPY_CONFIG)
         .with_context(|| format!("Failed to write clippy config to {}", config_path.display()))?;
     Ok(config_path)
@@ -96,7 +96,7 @@ pub fn write_clippy_config(project_path: &Path) -> Result<PathBuf> {
 
 /// Write the embedded deny config to a temporary location in the project
 pub fn write_deny_config(project_path: &Path) -> Result<PathBuf> {
-    let config_path = project_path.join(".ultrarusty-deny.toml");
+    let config_path = project_path.join(".ultrarust-deny.toml");
     fs::write(&config_path, DEFAULT_DENY_CONFIG)
         .with_context(|| format!("Failed to write deny config to {}", config_path.display()))?;
     Ok(config_path)
@@ -104,6 +104,6 @@ pub fn write_deny_config(project_path: &Path) -> Result<PathBuf> {
 
 /// Clean up temporary config files
 pub fn cleanup_configs(project_path: &Path) {
-    let _ = fs::remove_file(project_path.join(".ultrarusty-clippy.toml"));
-    let _ = fs::remove_file(project_path.join(".ultrarusty-deny.toml"));
+    let _ = fs::remove_file(project_path.join(".ultrarust-clippy.toml"));
+    let _ = fs::remove_file(project_path.join(".ultrarust-deny.toml"));
 }

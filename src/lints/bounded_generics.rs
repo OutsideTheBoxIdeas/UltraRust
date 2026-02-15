@@ -41,7 +41,7 @@ impl GenericVisitor {
 
         if type_param_count > MAX_TYPE_PARAMS {
             self.findings.push(Finding {
-                source: "ultrarusty".into(),
+                source: "ultrarust".into(),
                 check_name: "bounded_generics".into(),
                 severity: Severity::Medium,
                 file: self.path.clone(),

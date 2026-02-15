@@ -6,13 +6,13 @@ use std::path::Path;
 // We test individual passes by parsing fixture code and checking findings.
 
 /// Helper: analyze a fixture file through the driver.
-fn analyze_fixture(fixture_name: &str) -> Vec<cargo_ultrarusty::driver::Finding> {
+fn analyze_fixture(fixture_name: &str) -> Vec<ultrarust::driver::Finding> {
     let fixture_path = Path::new(env!("CARGO_MANIFEST_DIR"))
         .join("tests")
         .join("fixtures")
         .join(fixture_name);
 
-    let driver = cargo_ultrarusty::driver::AnalysisDriver::new();
+    let driver = ultrarust::driver::AnalysisDriver::new();
 
     // Use analyze_project on the fixtures dir, then filter to our file
     driver.analyze_project(fixture_path.parent().unwrap())
@@ -22,8 +22,8 @@ fn analyze_fixture(fixture_name: &str) -> Vec<cargo_ultrarusty::driver::Finding>
 }
 
 /// Helper: analyze a code string by writing to a temp file and running the driver.
-fn analyze_code(code: &str) -> Vec<cargo_ultrarusty::driver::Finding> {
-    let driver = cargo_ultrarusty::driver::AnalysisDriver::new();
+fn analyze_code(code: &str) -> Vec<ultrarust::driver::Finding> {
+    let driver = ultrarust::driver::AnalysisDriver::new();
     let tmp = tempfile::tempdir().expect("failed to create temp dir");
     let file_path = tmp.path().join("test_input.rs");
     std::fs::write(&file_path, code).expect("failed to write temp file");
@@ -87,7 +87,7 @@ fn test_clean_code_fixture_minimal_findings() {
     // Filter out any findings from the security checks that are overly broad
     let lint_findings: Vec<_> = findings
         .iter()
-        .filter(|f| f.source == "ultrarusty")
+        .filter(|f| f.source == "ultrarust")
         .collect();
 
     assert!(lint_findings.is_empty(),
@@ -297,7 +297,7 @@ fn test_timing_attack_allows_non_secret() {
 
 #[test]
 fn test_driver_registers_15_passes() {
-    let driver = cargo_ultrarusty::driver::AnalysisDriver::new();
+    let driver = ultrarust::driver::AnalysisDriver::new();
     assert_eq!(driver.pass_count(), 15);
 }
 
@@ -306,7 +306,7 @@ fn test_findings_have_correct_source_field() {
     let lint_findings = analyze_code("fn foo() -> Result<i32, String> { Ok(0) }");
     for f in &lint_findings {
         if f.check_name == "no_string_errors" {
-            assert_eq!(f.source, "ultrarusty", "Lint findings should have source='ultrarusty'");
+            assert_eq!(f.source, "ultrarust", "Lint findings should have source='ultrarust'");
         }
     }
 
