@@ -23,14 +23,9 @@ UltraRust is a comprehensive **3-stage verification pipeline** specifically desi
 
 ### ⚠️ Early Release Notice
 
-This project was created with **Claude Opus 4.6** as a proof-of-concept to demonstrate what's possible when AI builds tools for validating AI-generated code. While the implementation is functional and passes all tests, **this is an early release that needs community validation and real-world testing.**
+This project was created with **Claude Opus 4.6 and Sonnet 4.5** as a proof-of-concept to demonstrate what's possible when AI builds tools for validating AI-generated code. While the implementation is functional and passes all tests, **this is an early release that needs real-world testing.**
 
-**Why release it now?** The goal is to get this idea into the hands of the Rust community as quickly as possible. AI code generation is accelerating rapidly, and we need robust validation tools to keep pace. By sharing UltraRust early, we're hoping to:
-
-- **Spark conversation** about AI code validation standards
-- **Gather feedback** from experienced Rust developers
-- **Identify edge cases** we haven't considered
-- **Build momentum** toward making this the standard for AI-generated Rust code validation
+The goal is to:
 
 **We need your help!** If you work with AI-generated Rust code, please:
 1. Test UltraRust on your projects
