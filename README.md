@@ -22,6 +22,9 @@
 > **Generated:** 2026-02-15 17:19:27 | UltraRust v1.0.0  
 > **Project:** `sample-rust-project`
 
+### Some of these will be false positives. The point is to feed the findings .json back into your prefered AI model and have it check all of these to see what findings are genuine and fix them
+
+
 | Total Findings | Critical | High | Medium | Low |
 | ---: | ---: | ---: | ---: | ---: |
 | **765** | **110** | **294** | **361** | **0** |
