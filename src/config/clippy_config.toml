@@ -1,0 +1,18 @@
+cognitive-complexity-threshold = 12
+too-many-arguments-threshold = 5
+type-complexity-threshold = 200
+too-many-lines-threshold = 80
+max-fn-params-bools = 1
+max-struct-bools = 2
+excessive-nesting-threshold = 4
+
+disallowed-methods = [
+    { path = "std::process::Command::new", reason = "Use the validated command builder instead" },
+    { path = "std::env::var", reason = "Use the config system, not raw env vars" },
+    { path = "std::thread::sleep", reason = "Use async sleep with timeout" },
+    { path = "std::process::exit", reason = "Return from main instead" },
+]
+
+disallowed-types = [
+    { path = "std::collections::HashMap", reason = "Use BTreeMap for deterministic ordering, or specify a hasher" },
+]
