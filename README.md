@@ -29,9 +29,6 @@
 | ---: | ---: | ---: | ---: | ---: |
 | **765** | **110** | **294** | **361** | **0** |
 
-| Total Validated Findings | Critical | High | Medium | Low |
-| ---: | ---: | ---: | ---: | ---: |
-| **5** | **5** | **0** | **0** | **0** |
 ### Stage Breakdown
 
 | Stage | Status | Result |
